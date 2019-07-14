@@ -3,6 +3,8 @@
 package cli
 
 import (
+	"encoding/json"
+	"io/ioutil"
 	"os"
 
 	"github.com/rburmorrison/hoist/types"
@@ -10,9 +12,35 @@ import (
 )
 
 func persistentPreRunE(cmd *cobra.Command, args []string) error {
-	if _, err := os.Stat(types.ConfigPath); err != nil {
+	// Create the configuration directory if it does not
+	// exist yet
+	if _, err := os.Stat(types.ConfigDir); err != nil {
 		if os.IsNotExist(err) {
-			if err = os.MkdirAll(types.ConfigPath, 770); err != nil {
+			if err = os.MkdirAll(types.ConfigDir, 0770); err != nil {
+				return err
+			}
+		} else {
+			return err
+		}
+	}
+
+	// Create an empty configuration file if it does not
+	// exist yet
+	if _, err := os.Stat(types.ConfigFilePath); err != nil {
+		if os.IsNotExist(err) {
+			// Define defaults
+			config := make(types.Configuration)
+			config["address"] = "localhost:5000"
+			config["mode"] = types.ModeHTTP
+
+			// Generate empty JSON data
+			bs, err := json.Marshal(config)
+			if err != nil {
+				return err
+			}
+
+			// Write the data to the file
+			if err = ioutil.WriteFile(types.ConfigFilePath, append(bs, '\n'), 0770); err != nil {
 				return err
 			}
 		} else {

@@ -12,5 +12,9 @@ func NewHoistCommand() *cobra.Command {
 		PersistentPreRunE: persistentPreRunE,
 	}
 
+	cmd.AddCommand(
+		NewConfigCommand(),
+	)
+
 	return cmd
 }
