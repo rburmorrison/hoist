@@ -56,5 +56,5 @@ func ConfigFetchMode() (types.Mode, error) {
 		return -1, err
 	}
 
-	return val.(types.Mode), nil
+	return types.Mode(val.(float64)), nil
 }
