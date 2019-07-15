@@ -36,3 +36,10 @@ func configSetKey(key string, value interface{}) error {
 func ConfigSetAddress(address string) error {
 	return configSetKey("address", address)
 }
+
+// ConfigSetMode will set the mode setting for hoist.
+// An error may occur if the configuration file is
+// unavailable.
+func ConfigSetMode(mode types.Mode) error {
+	return configSetKey("mode", mode)
+}

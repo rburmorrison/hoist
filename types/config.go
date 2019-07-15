@@ -1,14 +1,16 @@
 package types
 
+// Mode represents the way that requests are sent to
+// a Docker registry.
 type Mode int
 
-var (
+const (
 	// ModeHTTP sends requests to the registry using HTTP
 	ModeHTTP Mode = iota
 
 	// ModeHTTPS sends requests to the registry using
 	// HTTPS
-	ModeHTTPS Mode
+	ModeHTTPS
 )
 
 func (m Mode) String() string {
