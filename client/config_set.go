@@ -41,5 +41,5 @@ func ConfigSetAddress(address string) error {
 // An error may occur if the configuration file is
 // unavailable.
 func ConfigSetMode(mode types.Mode) error {
-	return configSetKey("mode", mode)
+	return configSetKey("mode", int(mode))
 }

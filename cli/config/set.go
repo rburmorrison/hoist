@@ -1,4 +1,4 @@
-package cli
+package cliconfig
 
 import (
 	"fmt"
@@ -9,22 +9,22 @@ import (
 	"github.com/spf13/cobra"
 )
 
-type configOptions struct {
+type setOptions struct {
 	Address string
 	Mode    string
 }
 
-// NewConfigCommand creates a new hoist command.
-func NewConfigCommand() *cobra.Command {
+// NewSetCommand creates a command to set config
+// options.
+func NewSetCommand() *cobra.Command {
 	var address string
 	var mode string
 
 	cmd := &cobra.Command{
-		Use:               "config",
-		Short:             "Set configuration options for hoist",
-		PersistentPreRunE: persistentPreRunE,
+		Use:   "set",
+		Short: "Set configuration options for hoist",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			return runConfig(configOptions{
+			return runSet(setOptions{
 				Address: address,
 				Mode:    mode,
 			})
@@ -37,7 +37,7 @@ func NewConfigCommand() *cobra.Command {
 	return cmd
 }
 
-func runConfig(opts configOptions) error {
+func runSet(opts setOptions) error {
 	// Address
 	if opts.Address != "" {
 		return setAddress(opts.Address)

@@ -1,6 +1,7 @@
 package cli
 
 import (
+	cliconfig "github.com/rburmorrison/hoist/cli/config"
 	"github.com/spf13/cobra"
 )
 
@@ -13,7 +14,7 @@ func NewHoistCommand() *cobra.Command {
 	}
 
 	cmd.AddCommand(
-		NewConfigCommand(),
+		cliconfig.NewConfigCommand(),
 	)
 
 	return cmd
