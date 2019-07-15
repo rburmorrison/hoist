@@ -46,3 +46,15 @@ func ConfigFetchAddress() (string, error) {
 
 	return val.(string), nil
 }
+
+// ConfigFetchMode will set the mode setting for
+// hoist. An error may occur if the configuration
+// file is unavailable.
+func ConfigFetchMode() (types.Mode, error) {
+	val, err := configFetchKey("mode")
+	if err != nil {
+		return -1, err
+	}
+
+	return val.(types.Mode), nil
+}
