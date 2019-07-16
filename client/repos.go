@@ -6,9 +6,9 @@ import (
 	"github.com/rburmorrison/hoist/types"
 )
 
-// Reps returns a list of repository summaries from
+// Repos returns a list of repository summaries from
 // a registry.
-func Reps() ([]types.RepositorySummary, error) {
+func Repos() ([]types.RepositorySummary, error) {
 	bs, err := sendRequest("/v2/_catalog")
 	if err != nil {
 		return nil, err

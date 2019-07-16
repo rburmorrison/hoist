@@ -10,32 +10,33 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// NewRepsCommand creates a new command to retrieve
+// NewReposCommand creates a new command to retrieve
 // repositories from a Docker registry.
-func NewRepsCommand() *cobra.Command {
+func NewReposCommand() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "reps",
-		Short: "List repositories from the registry",
+		Use:     "repos",
+		Short:   "List repositories from the registry",
+		Aliases: []string{"reps", "repositories"},
 		RunE: func(cmd *cobra.Command, args []string) error {
-			return runReps()
+			return runRepos()
 		},
 	}
 
 	return cmd
 }
 
-func runReps() error {
-	summaries, err := client.Reps()
+func runRepos() error {
+	summaries, err := client.Repos()
 	if err != nil {
 		return err
 	}
 
-	displayRepsTable(summaries, 3)
+	displayReposTable(summaries, 3)
 
 	return nil
 }
 
-func displayRepsTable(summaries []types.RepositorySummary, padding int) {
+func displayReposTable(summaries []types.RepositorySummary, padding int) {
 	mostCharacters := 0
 	for _, summary := range summaries {
 		if len(summary.Name) > mostCharacters {
