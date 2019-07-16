@@ -49,6 +49,6 @@ func displayRepsTable(summaries []types.RepositorySummary, padding int) {
 	fmt.Printf("NAME%sTAG COUNT\n", strings.Repeat(" ", mostCharacters-4+padding))
 	for _, summary := range summaries {
 		separation := strings.Repeat(" ", mostCharacters-len(summary.Name)+padding)
-		fmt.Printf("%s%s\n", summary.Name, separation)
+		fmt.Printf("%s%s%d\n", summary.Name, separation, summary.TagCount)
 	}
 }
