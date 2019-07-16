@@ -54,10 +54,6 @@ func runSet(opts setOptions) error {
 }
 
 func setAddress(address string) error {
-	if err := client.ConfigSetAddress(address); err != nil {
-		return err
-	}
-
 	if strings.HasPrefix(address, "http://") {
 		address = strings.TrimPrefix(address, "http://")
 		if err := client.ConfigSetMode(types.ModeHTTP); err != nil {
@@ -72,6 +68,10 @@ func setAddress(address string) error {
 			return err
 		}
 		fmt.Println("Mode: HTTPS")
+	}
+
+	if err := client.ConfigSetAddress(address); err != nil {
+		return err
 	}
 
 	fmt.Println("Address: " + address)
