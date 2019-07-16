@@ -6,10 +6,6 @@
 # Folders
 _obj
 _test
-.vscode
-
-# Binaries
-cmd/hoist/hoist
 
 # Architecture specific extensions/prefixes
 *.[568vq]
@@ -23,9 +19,20 @@ _cgo_export.*
 
 _testmain.go
 
-*.exe
-*.test
-*.prof
+# Vim files https://github.com/github/gitignore/blob/master/Global/Vim.gitignore
+# swap
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+# session
+Session.vim
+# temporary
+.netrwhist
+*~
+# auto-generated tag files
+tags
 
-**/*.swp
-**/*.backup
+*.exe
+
+cobra.test
+
+.idea/*
