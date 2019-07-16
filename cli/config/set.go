@@ -23,6 +23,8 @@ func NewSetCommand() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "set",
 		Short: "Set configuration options for hoist",
+		Example: `hoist config set -a http://localhost:5000
+hoist config set -a localhost:5000 -m http`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return runSet(setOptions{
 				Address: address,

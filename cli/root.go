@@ -10,13 +10,14 @@ func NewHoistCommand() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:               "hoist",
 		Short:             "A CLI to explore private Docker Registries",
+		Version:           "v1.0.0",
 		PersistentPreRunE: persistentPreRunE,
 	}
 
 	cmd.AddCommand(
-		cliconfig.NewConfigCommand(),
-		NewRepsCommand(),
+		NewReposCommand(),
 		NewTagsCommand(),
+		cliconfig.NewConfigCommand(),
 	)
 
 	return cmd

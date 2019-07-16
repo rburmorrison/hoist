@@ -3,7 +3,6 @@ package cli
 import (
 	"errors"
 	"fmt"
-	"strings"
 
 	"github.com/rburmorrison/hoist/client"
 	"github.com/spf13/cobra"
@@ -48,13 +47,13 @@ func runTags(opts tagsOptions) error {
 		return err
 	}
 
-	for _, tag := range tags {
-		fmt.Printf("%s%s", tag, opts.Separator)
+	for i, tag := range tags {
+		fmt.Print(tag)
+		if i != len(tags)-1 {
+			fmt.Print(opts.Separator)
+		}
 	}
-
-	if !strings.HasSuffix(opts.Separator, "\n") {
-		fmt.Println()
-	}
+	fmt.Println()
 
 	return nil
 }
