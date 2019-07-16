@@ -36,15 +36,6 @@ func NewFetchCommand() *cobra.Command {
 }
 
 func runFetch(opts fetchOptions) error {
-	// Address
-	if opts.ShowAddress {
-		address, err := client.ConfigFetchAddress()
-		if err != nil {
-			return err
-		}
-		fmt.Println("Address: " + address)
-	}
-
 	// Mode
 	if opts.ShowMode {
 		mode, err := client.ConfigFetchMode()
@@ -52,6 +43,15 @@ func runFetch(opts fetchOptions) error {
 			return err
 		}
 		fmt.Println("Mode: " + mode.String())
+	}
+
+	// Address
+	if opts.ShowAddress {
+		address, err := client.ConfigFetchAddress()
+		if err != nil {
+			return err
+		}
+		fmt.Println("Address: " + address)
 	}
 
 	return nil
