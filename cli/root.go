@@ -16,6 +16,7 @@ func NewHoistCommand() *cobra.Command {
 	cmd.AddCommand(
 		cliconfig.NewConfigCommand(),
 		NewRepsCommand(),
+		NewTagsCommand(),
 	)
 
 	return cmd
