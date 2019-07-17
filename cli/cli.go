@@ -4,8 +4,11 @@ package cli
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
+	"math"
 	"os"
+	"strings"
 
 	"github.com/rburmorrison/hoist/types"
 	"github.com/spf13/cobra"
@@ -49,4 +52,22 @@ func persistentPreRunE(cmd *cobra.Command, args []string) error {
 	}
 
 	return nil
+}
+
+func displayReposTable(summaries []types.RepositorySummary, padding int) {
+	mostCharacters := 0
+	for _, summary := range summaries {
+		if len(summary.Name) > mostCharacters {
+			mostCharacters = len(summary.Name)
+		}
+	}
+
+	width := int(math.Max(float64(mostCharacters), 4))
+	width += padding
+
+	fmt.Printf("NAME%sTAG COUNT\n", strings.Repeat(" ", mostCharacters-4+padding))
+	for _, summary := range summaries {
+		separation := strings.Repeat(" ", mostCharacters-len(summary.Name)+padding)
+		fmt.Printf("%s%s%d\n", summary.Name, separation, summary.TagCount)
+	}
 }
