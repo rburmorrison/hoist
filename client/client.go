@@ -14,6 +14,10 @@ var (
 	// ErrConfigNotFound occurs when trying to access
 	// a configuration option that is not defined.
 	ErrConfigNotFound = errors.New("config key not found")
+
+	// ErrImageNotFound occurs when the search function
+	// is unable to find the provided image.
+	ErrImageNotFound = errors.New("image not found")
 )
 
 // sendRequest sends a GET request to the registry
