@@ -10,7 +10,7 @@ func NewHoistCommand() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:               "hoist",
 		Short:             "A CLI to explore private Docker Registries",
-		Version:           "v1.0.1",
+		Version:           "v1.1.0",
 		PersistentPreRunE: persistentPreRunE,
 	}
 
