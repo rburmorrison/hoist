@@ -19,9 +19,9 @@ Usage:
 Available Commands:
   config      Manage hoist configuration
   filter      Filter repos that contain some text
+  find        Find an image in a registry
   help        Help about any command
   repos       List repositories from the registry
-  search      Search for an image in a registry
   tags        List repositories from the registry
 
 Flags:
