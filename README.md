@@ -10,7 +10,7 @@ Note: Hoist was made with Go version 1.12.7. It will most likely work with older
 
 ### Usage
 
-```bash
+```
 A CLI to explore private Docker Registries
 
 Usage:

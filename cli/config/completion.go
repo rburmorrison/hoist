@@ -15,7 +15,7 @@ func NewCompletionCommand() *cobra.Command {
 		Use:   "completion",
 		Short: "Generate bash completion script",
 		Example: `hoist config completion >> ~/.bash_completion
-hoist config completion --zsh >> ~/.oh-my-zsh/completions/_hoist`,
+hoist config completion --zsh > ~/.oh-my-zsh/completions/_hoist`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if zsh {
 				return cmd.Root().GenZshCompletion(os.Stdout)
