@@ -1,7 +1,9 @@
 package client
 
 import (
+	"errors"
 	"regexp"
+	"strings"
 )
 
 var imageRegex = regexp.MustCompile(`^\S*:\S*$`)
@@ -9,6 +11,14 @@ var imageRegex = regexp.MustCompile(`^\S*:\S*$`)
 // Search looks for a an image. An error is returned
 // if it cannot be found.
 func Search(image string) (string, error) {
+	image = strings.TrimSpace(image)
+
+	// There's a special case where just a colon can be
+	// provided, this fixes that
+	if image == ":" {
+		return "", errors.New("improper image format")
+	}
+
 	// If the image text didn't have a tag with it, add
 	// :latest
 	if !imageRegex.MatchString(image) {
