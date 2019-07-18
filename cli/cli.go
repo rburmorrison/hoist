@@ -65,9 +65,9 @@ func displayReposTable(summaries []types.RepositorySummary, padding int) {
 	width := int(math.Max(float64(mostCharacters), 4))
 	width += padding
 
-	fmt.Printf("NAME%sTAG COUNT\n", strings.Repeat(" ", mostCharacters-4+padding))
+	fmt.Printf("NAME%sTAG COUNT\n", strings.Repeat(" ", width-4+padding))
 	for _, summary := range summaries {
-		separation := strings.Repeat(" ", mostCharacters-len(summary.Name)+padding)
+		separation := strings.Repeat(" ", width-len(summary.Name)+padding)
 		fmt.Printf("%s%s%d\n", summary.Name, separation, summary.TagCount)
 	}
 }
