@@ -9,25 +9,26 @@ import (
 	"github.com/spf13/cobra"
 )
 
-type searchOptions struct {
+type findOptions struct {
 	Image string
 }
 
-// NewSearchCommand creates a command to search repos
+// NewFindCommand creates a command to search repos
 // in a Docker registry.
-func NewSearchCommand() *cobra.Command {
+func NewFindCommand() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "search REPO:TAG",
-		Short: "Search for an image in a registry",
+		Use:     "find REPO:TAG",
+		Short:   "Find an image in a registry",
+		Aliases: []string{"search"},
 		Args: func(cmd *cobra.Command, args []string) error {
 			if len(args) != 1 {
-				return errors.New("search text must be provided")
+				return errors.New("image name must be provided")
 			}
 
 			return nil
 		},
 		RunE: func(cmd *cobra.Command, args []string) error {
-			return runSearch(searchOptions{
+			return runFind(findOptions{
 				Image: args[0],
 			})
 		},
@@ -36,8 +37,8 @@ func NewSearchCommand() *cobra.Command {
 	return cmd
 }
 
-func runSearch(opts searchOptions) error {
-	image, err := client.Search(opts.Image)
+func runFind(opts findOptions) error {
+	image, err := client.Find(opts.Image)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error: %s\n", err.Error())
 		os.Exit(1)

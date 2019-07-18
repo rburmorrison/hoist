@@ -8,9 +8,9 @@ import (
 
 var imageRegex = regexp.MustCompile(`^\S*:\S*$`)
 
-// Search looks for a an image. An error is returned
+// Find looks for a an image. An error is returned
 // if it cannot be found.
-func Search(image string) (string, error) {
+func Find(image string) (string, error) {
 	image = strings.TrimSpace(image)
 
 	// There's a special case where just a colon can be
