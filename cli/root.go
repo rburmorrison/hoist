@@ -18,7 +18,7 @@ func NewHoistCommand() *cobra.Command {
 		NewReposCommand(),
 		NewTagsCommand(),
 		NewFilterCommand(),
-		NewSearchCommand(),
+		NewFindCommand(),
 		cliconfig.NewConfigCommand(),
 	)
 
