@@ -18,6 +18,14 @@ var (
 	// ErrImageNotFound occurs when the search function
 	// is unable to find the provided image.
 	ErrImageNotFound = errors.New("image not found")
+
+	// ErrRepoNotFound occurs when attempting to access
+	// a repo that does not exist.
+	ErrRepoNotFound = errors.New("repository not found")
+
+	// Err404NotFound occurs when a request to the
+	// registry replies with a 404 status code.
+	Err404NotFound = errors.New("404 not found")
 )
 
 // sendRequest sends a GET request to the registry
@@ -50,6 +58,10 @@ func sendRequest(route string) ([]byte, error) {
 		return nil, err
 	}
 	defer res.Body.Close()
+
+	if res.StatusCode == 404 {
+		return nil, Err404NotFound
+	}
 
 	// Decode the response
 	return ioutil.ReadAll(res.Body)

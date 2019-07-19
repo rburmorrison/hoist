@@ -3,6 +3,7 @@ package cli
 import (
 	"errors"
 	"fmt"
+	"os"
 
 	"github.com/rburmorrison/hoist/client"
 	"github.com/spf13/cobra"
@@ -44,6 +45,11 @@ func NewTagsCommand() *cobra.Command {
 func runTags(opts tagsOptions) error {
 	tags, err := client.Tags(opts.Repository)
 	if err != nil {
+		if err == client.ErrRepoNotFound {
+			fmt.Fprintf(os.Stderr, "Error: %s\n", err.Error())
+			os.Exit(1)
+		}
+
 		return err
 	}
 

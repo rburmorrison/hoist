@@ -11,6 +11,10 @@ import (
 func Tags(repository string) ([]string, error) {
 	bs, err := sendRequest("/v2/" + repository + "/tags/list")
 	if err != nil {
+		if err == Err404NotFound {
+			return nil, ErrRepoNotFound
+		}
+
 		return nil, err
 	}
 
