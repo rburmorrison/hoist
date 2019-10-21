@@ -36,7 +36,7 @@ Use "hoist [command] --help" for more information about a command.
 ----
 
 Hoist is a small front end for v2 Docker registries. The default registry that
-hoist sends requests to is `http://localhost:5000`. To change the registry that
+hoist sends requests to is http://localhost:5000/. To change the registry that
 requests are being sent to, you can run the `hoist config` sub-command. You can
 see examples with `hoist config set --help`.
 
