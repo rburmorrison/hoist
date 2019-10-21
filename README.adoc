@@ -1,0 +1,46 @@
+= Hoist =
+
+A CLI to explore private Docker Registries.
+
+== Building ==
+
+To build, run `go get -u github.com/rburmorrison/hoist/cmd/hoist`. The binary
+will be located in `$GOPATH/bin`. To get a specific version, go to the
+https://github.com/rburmorrison/hoist/releases[releases] page.
+
+Note: Hoist was made with Go version 1.12.7. It will most likely work with
+older versions, however no other versions have been tested.
+
+== Usage ==
+
+[source]
+----
+A CLI to explore private Docker Registries
+
+Usage:
+  hoist [command]
+
+Available Commands:
+  config      Manage hoist configuration
+  filter      Filter repos that contain some text
+  find        Find an image in a registry
+  help        Help about any command
+  repos       List repositories from the registry
+  tags        List repositories from the registry
+
+Flags:
+  -h, --help      help for hoist
+      --version   version for hoist
+
+Use "hoist [command] --help" for more information about a command.
+----
+
+Hoist is a small front end for v2 Docker registries. The default registry that
+hoist sends requests to is `http://localhost:5000`. To change the registry that
+requests are being sent to, you can run the `hoist config` sub-command. You can
+see examples with `hoist config set --help`.
+
+Images stored in a private Docker registry are organized by repositories. A
+repository is a group of images with the same name, but different tags. To
+display all repositories in a registry, run `hoist repos`. To see the tags
+associated with a repository, run `hoist tags REPOSITORY`.
